@@ -17,11 +17,13 @@ def verDados(cliente, planilha_clientes):
     c = 11
     for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
         for cedula in linha:        
-            if cedula.value == cliente:            
-                print(f"ID: {cedula.value}")
-                print(f"NOME: {planilha_clientes[f'D{c}'].value}")
-                print(f"TEL: {planilha_clientes[f'E{c}'].value}")
-                print(f"ENDEREÇO: {planilha_clientes[f'F{c}'].value}")
+            if cedula.value == cliente:   
+                print('=-' * 20)         
+                print(f"I͇D͇: {cedula.value}")
+                print(f"N͇O͇M͇E͇: {planilha_clientes[f'D{c}'].value}")
+                print(f"T͇E͇L͇: {planilha_clientes[f'E{c}'].value}")
+                print(f"E͇N͇D͇: {planilha_clientes[f'F{c}'].value}")
+                print('=-' * 20) 
             else:
                 c += 1
                 
