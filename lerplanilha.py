@@ -71,13 +71,13 @@ def cadastar(nome, tel, end):
 
 
 def menu():
-    
+    import os
     print('   CLIENTES HOMEBURGUER')
     print('=-' * 20)
     
     while True:
-        escolha = str(input('[1] BUSCAR CLIENTE\n[2] CADASTRAR CLIENTE\nESCOLHA: '))
-        if escolha in '12':
+        escolha = str(input('[1] BUSCAR CLIENTE\n[2] CADASTRAR CLIENTE\n[3] LIMPAR TELA\n[4] SAIR\nESCOLHA: '))
+        if escolha in '1234':
             break
     if escolha == '1':
         consulta()        
@@ -85,5 +85,12 @@ def menu():
     if escolha == '2':
         pegarDados()        
         menu()
+    if escolha == '3':
+        os.system('cls')
+        menu()
+    if escolha == '4':
+        os.system('exit')    
+
 if __name__ == "__main__":
+    print()
     menu()
