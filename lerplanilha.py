@@ -1,6 +1,6 @@
 import openpyxl
 def consulta():
-    planilha = openpyxl.load_workbook('Clientes 2.xlsm')
+    planilha = openpyxl.load_workbook('Clientes 2.xlsx')
     planilha_clientes = planilha['Clientes']    
     allid = list()
     for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
@@ -28,7 +28,37 @@ def verDados(cliente, planilha_clientes):
                 print('=-' * 20) 
             else:
                 c += 1
-                
+
+
+
+def cadastar():
+    planilha = openpyxl.load_workbook('Clientes 2.xlsx')
+    planilha_clientes = planilha['Clientes']   
+    nome = str(input('NOME: '))
+    tel = str(input('TEL: '))
+    end = str(input('END: ')) 
+    allid = list()
+    for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
+        for cedula in linha:
+            if cedula.value == None:
+                pass
+            else:
+                allid.append(cedula.value)
+    
+    allid.sort()
+    idusuario = allid[-1] +1
+    linha_dado = len(allid) +11
+    print(f'id novousuario = {idusuario}')
+    print(f"linha a ser escrita = {linha_dado}")
+    planilha_clientes[f'C{linha_dado}'] = idusuario
+    planilha_clientes[f'D{linha_dado}'] = nome
+    planilha_clientes[f'E{linha_dado}'] = tel
+    planilha_clientes[f'F{linha_dado}'] = end
+    planilha.save('Clientes 2.xlsx')
+
+
+
+
 if __name__ == "__main__":
     print('=-' * 14)
     print('   CLIENTES HOMEBURGUER')
@@ -42,4 +72,4 @@ if __name__ == "__main__":
     if escolha == '1':
         consulta()
     if escolha == '2':
-        pass
+        cadastar()
