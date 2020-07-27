@@ -29,14 +29,27 @@ def verDados(cliente, planilha_clientes):
             else:
                 c += 1
 
+def pegarDados():
+    while True:
+        nome = str(input('NOME: '))
+        if nome not in '':
+            break
+    while True:    
+        tel = str(input('TEL: '))
+        if tel not in '':
+            break
+    while True:    
+        end = str(input('END: ')) 
+        if end not in '':
+            break
+    cadastar(nome, tel, end)
 
 
-def cadastar():
+
+
+def cadastar(nome, tel, end):
     planilha = openpyxl.load_workbook('Clientes 2.xlsx')
     planilha_clientes = planilha['Clientes']   
-    nome = str(input('NOME: '))
-    tel = str(input('TEL: '))
-    end = str(input('END: ')) 
     allid = list()
     for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
         for cedula in linha:
@@ -72,4 +85,4 @@ if __name__ == "__main__":
     if escolha == '1':
         consulta()
     if escolha == '2':
-        cadastar()
+        pegarDados()
