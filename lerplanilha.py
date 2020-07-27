@@ -1,15 +1,17 @@
 import openpyxl
-def consulta(idcliente=0):
+def consulta():
     planilha = openpyxl.load_workbook('Clientes 2.xlsm')
-    planilha_clientes = planilha['Clientes']
-    cliente = idcliente
+    planilha_clientes = planilha['Clientes']    
     allid = list()
     for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
         for cedula in linha:
             allid.append(cedula.value)
     allid.remove(None)
+    cliente = int(input("Qual ID cliente: "))
     if cliente not in allid:
       print("Cliente nao encontrado")
+      allid.clear()
+      consulta()
     else:
         verDados(cliente, planilha_clientes)
 
@@ -28,4 +30,16 @@ def verDados(cliente, planilha_clientes):
                 c += 1
                 
 if __name__ == "__main__":
-    consulta(int(input("Qual ID cliente: ")))
+    print('=-' * 14)
+    print('   CLIENTES HOMEBURGUER')
+    print('=-' * 14)
+    
+    while True:
+        escolha = str(input('[1] BUSCAR CLIENTE\n[2] CADASTRAR CLIENTE\nESCOLHA: '))
+        if escolha in '12':
+            break
+
+    if escolha == '1':
+        consulta()
+    if escolha == '2':
+        pass
