@@ -89,7 +89,15 @@ def menu():
         os.system('cls')
         menu()
     if escolha == '4':
-        os.system('exit')    
+        while True:
+            decisão = str(input('Deseja sair? [S/N] ')).strip().upper()[0]
+            if decisão in 'SN':
+                break
+        if decisão == 'S':  
+            os.system('exit')
+        elif decisão == 'N':
+            print()
+            menu()    
 
 if __name__ == "__main__":
     print()
