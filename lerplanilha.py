@@ -19,7 +19,8 @@ def verDados(cliente, planilha_clientes):
     c = 11
     for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
         for cedula in linha:        
-            if cedula.value == cliente:   
+            if cedula.value == cliente:
+                 
                 print('=-' * 20)         
                 print(f"I͇D͇: {cedula.value}")
                 print(f"N͇O͇M͇E͇: {planilha_clientes[f'D{c}'].value}")
@@ -45,8 +46,6 @@ def pegarDados():
     cadastar(nome, tel, end)
 
 
-
-
 def cadastar(nome, tel, end):
     planilha = openpyxl.load_workbook('Clientes 2.xlsx')
     planilha_clientes = planilha['Clientes']   
@@ -61,8 +60,9 @@ def cadastar(nome, tel, end):
     allid.sort()
     idusuario = allid[-1] +1
     linha_dado = len(allid) +11
-    print(f'id novousuario = {idusuario}')
-    print(f"linha a ser escrita = {linha_dado}")
+    print('=-' * 20)
+    print(f'Adicionar id no contato = {idusuario}')
+    print('=-' * 20)
     planilha_clientes[f'C{linha_dado}'] = idusuario
     planilha_clientes[f'D{linha_dado}'] = nome
     planilha_clientes[f'E{linha_dado}'] = tel
@@ -70,19 +70,20 @@ def cadastar(nome, tel, end):
     planilha.save('Clientes 2.xlsx')
 
 
-
-
-if __name__ == "__main__":
-    print('=-' * 14)
+def menu():
+    
     print('   CLIENTES HOMEBURGUER')
-    print('=-' * 14)
+    print('=-' * 20)
     
     while True:
         escolha = str(input('[1] BUSCAR CLIENTE\n[2] CADASTRAR CLIENTE\nESCOLHA: '))
         if escolha in '12':
             break
-
     if escolha == '1':
-        consulta()
+        consulta()        
+        menu()
     if escolha == '2':
-        pegarDados()
+        pegarDados()        
+        menu()
+if __name__ == "__main__":
+    menu()
