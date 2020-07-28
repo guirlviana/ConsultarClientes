@@ -19,13 +19,16 @@ def verDados(cliente, planilha_clientes):
     c = 11
     for linha in planilha_clientes.iter_rows(min_row= 11, min_col=3, max_col=3):    
         for cedula in linha:        
-            if cedula.value == cliente:
-                 
+            if cedula.value == cliente: 
                 print('=-' * 20)         
-                print(f"I͇D͇: {cedula.value}")
-                print(f"N͇O͇M͇E͇: {planilha_clientes[f'D{c}'].value}")
-                print(f"T͇E͇L͇: {planilha_clientes[f'E{c}'].value}")
-                print(f"E͇N͇D͇: {planilha_clientes[f'F{c}'].value}")
+                print(f"ID: {cedula.value}")
+                print(f"NOME: {planilha_clientes[f'D{c}'].value}")
+                tel = planilha_clientes[f'E{c}'].value
+                if len(tel) == 11:                    
+                    print(f'TEL: ({tel[0]}{tel[1]}) {tel[2:6]}-{tel[6:]}')
+                else:
+                    print(f"TEL: {planilha_clientes[f'E{c}'].value}")
+                print(f"END: {planilha_clientes[f'F{c}'].value}")
                 print('=-' * 20) 
             else:
                 c += 1
@@ -59,7 +62,7 @@ def cadastar(nome, tel, end):
     
     allid.sort()
     idusuario = allid[-1] +1
-    linha_dado = len(allid) +11
+    linha_dado = len(allid) +11  
     print('=-' * 20)
     print(f'Adicionar id no contato = {idusuario}')
     print('=-' * 20)
